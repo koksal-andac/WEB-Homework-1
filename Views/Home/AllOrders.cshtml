@@ -1,0 +1,29 @@
+@model List<MealOrder>
+
+<h1>All Orders</h1>
+
+<table border="1" cellpadding="6">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Student Name</th>
+            <th>Meal Name</th>
+            <th>Status</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderID</td>
+                <td>@order.StudentName</td>
+                <td>@order.MealName</td>
+                <td>@(order.Collected ? "Collected" : "Not Collected")</td>
+                <td><a href="@Url.Action("Details", "Home", new { id = order.OrderID })">Detay</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Toral number of orders: <strong>@Model.Count</strong></p>

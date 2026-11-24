@@ -1,0 +1,30 @@
+@model List<MealOrder>
+
+<h1>@ViewBag.CafeteriaName</h1>
+<p>Today's date: @ViewBag.CurrentDate</p>
+<p>Number of orders collected: <strong>@ViewBag.CollectedCount</strong></p>
+
+<h2>Collected Orders</h2>
+
+
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Student Name</th>
+                <th>Meal Name</th>
+                <th>Delivery Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderID</td>
+                    <td>@order.StudentName</td>
+                    <td>@order.MealName</td>
+                    <td>@(order.CollectedAt?.ToString("dd.MM.yyyy HH:mm"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>

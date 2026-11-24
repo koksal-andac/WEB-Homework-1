@@ -1,0 +1,44 @@
+@model MealOrder?
+
+<h1>Order Information</h1>
+
+@if (Model == null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>Order ID</th>
+            <td>@Model.OrderID</td>
+        </tr>
+        <tr>
+            <th>Student Name</th>
+            <td>@Model.StudentName</td>
+        </tr>
+        <tr>
+            <th>Yemek</th>
+            <td>@Model.MealName</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>@(Model.Collected ? "Collected" : "Not Collected")</td>
+        </tr>
+        <tr>
+            <th>Delivery Time</th>
+            <td>
+                @if (Model.Collected && Model.CollectedAt.HasValue)
+                {
+                    @Model.CollectedAt.Value.ToString("dd.MM.yyyy HH:mm")
+                }
+                else
+                {
+                    <span> - </span>
+                }
+            </td>
+        </tr>
+    </table>
+}
+
+<p><a href="@Url.Action("AllOrders", "Home")">Return to All Orders</a></p>

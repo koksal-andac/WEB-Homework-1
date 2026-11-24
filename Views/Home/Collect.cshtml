@@ -1,0 +1,15 @@
+@model CollectionForm
+
+<h1>Collect Meal</h1>
+
+@if (ViewBag.Message != null)
+{
+    var color = ViewBag.MessageType == "success" ? "green" : "red";
+    <p style="color: @color;"><strong>@ViewBag.Message</strong></p>
+}
+
+<form method="post" action="@Url.Action("Collect", "Home")">
+    <label for="OrderID">Order ID:</label>
+    <input type="text" id="OrderID" name="OrderID" value="@Model.OrderID" required />
+    <button type="submit">Collect</button>
+</form>
